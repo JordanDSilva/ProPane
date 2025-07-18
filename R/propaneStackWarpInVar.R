@@ -35,6 +35,9 @@ propaneStackWarpInVar = function(image_list=NULL, inVar_list=NULL, exp_list=NULL
     registerDoParallel(cores=cores)
   }else if(multitype=='cluster'){
     registerDoParallel(cl=cores)
+  }else{
+    cl <- makeCluster(spec=cores, type=multitype)
+    registerDoParallel(cl)
   }
 
   # cl = makeCluster(cores, type=multitype)
@@ -1123,6 +1126,9 @@ propaneStackWarpInVar = function(image_list=NULL, inVar_list=NULL, exp_list=NULL
   }
   class(output) = "ProPane"
   stopImplicitCluster()
+  if(exists(cl)){
+    stopCluster(cl)
+  }
   return(invisible(output))
 }
 

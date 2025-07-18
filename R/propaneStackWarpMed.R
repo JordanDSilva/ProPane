@@ -39,6 +39,9 @@ propaneStackWarpFunc = function(
     registerDoParallel(cores=cores)
   }else if(multitype=='cluster'){
     registerDoParallel(cl=cores)
+  }else{
+    cl <- makeCluster(spec=cores, type=multitype)
+    registerDoParallel(cl)
   }
 
   image_list = Rfits_make_list(filelist = filelist,
@@ -237,6 +240,12 @@ propaneStackWarpFunc = function(
   )
 
   class(output) = "ProPane"
+  
+  stopImplicitCluster()
+  if(exists(cl)){
+    stopCluster(cl)
+  }
+  
   return(invisible(output))
 }
 
