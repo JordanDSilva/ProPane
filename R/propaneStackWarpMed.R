@@ -240,12 +240,6 @@ propaneStackWarpFunc = function(
   )
 
   class(output) = "ProPane"
-  
-  stopImplicitCluster()
-  if(exists(cl)){
-    stopCluster(cl)
-  }
-  
   return(invisible(output))
 }
 

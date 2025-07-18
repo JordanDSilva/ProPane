@@ -1126,9 +1126,6 @@ propaneStackWarpInVar = function(image_list=NULL, inVar_list=NULL, exp_list=NULL
   }
   class(output) = "ProPane"
   stopImplicitCluster()
-  if(exists(cl)){
-    stopCluster(cl)
-  }
   return(invisible(output))
 }
 
