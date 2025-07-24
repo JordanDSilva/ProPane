@@ -40,7 +40,7 @@ propaneStackWarpFunc = function(
   }else if(multitype=='cluster'){
     registerDoParallel(cl=cores)
   }else{
-    cl <- makeCluster(spec=cores, type=multitype)
+    cl <- makeCluster(spec=cores, type=multitype, outfile = "")
     registerDoParallel(cl)
   }
 
